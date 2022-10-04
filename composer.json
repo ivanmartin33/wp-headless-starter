@@ -1,0 +1,168 @@
+{
+  "name": "roots/bedrock",
+  "type": "project",
+  "license": "MIT",
+  "description": "WordPress boilerplate with Composer, easier configuration, and an improved folder structure",
+  "homepage": "https://roots.io/bedrock/",
+  "authors": [
+    {
+      "name": "Scott Walkinshaw",
+      "email": "scott.walkinshaw@gmail.com",
+      "homepage": "https://github.com/swalkinshaw"
+    },
+    {
+      "name": "Ben Word",
+      "email": "ben@benword.com",
+      "homepage": "https://github.com/retlehs"
+    }
+  ],
+  "keywords": [
+    "bedrock",
+    "composer",
+    "roots",
+    "wordpress",
+    "wp",
+    "wp-config"
+  ],
+  "support": {
+    "issues": "https://github.com/roots/bedrock/issues",
+    "forum": "https://discourse.roots.io/category/bedrock"
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://wpackagist.org",
+      "only": [
+        "wpackagist-plugin/*",
+        "wpackagist-theme/*"
+      ]
+    },
+    {
+      "type": "composer",
+      "url": "https://wp-languages.github.io",
+      "only": [
+        "koodimonni-language/*",
+        "koodimonni-plugin-language/*",
+        "koodimonni-theme-language/*"
+      ]
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "funkhaus/wp-graphql-cors",
+        "type": "wordpress-plugin",
+        "version": "dev-master",
+        "source": {
+          "type": "git",
+          "url": "git@github.com:funkhaus/wp-graphql-cors.git",
+          "reference": "master"
+        }
+      }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "ivanmartin33/acf-pro",
+        "type": "wordpress-plugin",
+        "version": "dev-acf-pro",
+        "source": {
+          "type": "git",
+          "url": "git@github.com:ivanmartin33/wp-plugins.git",
+          "reference": "acf-pro"
+        }
+      }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "nicoandrade/wp-headless-trigger",
+        "type": "wordpress-plugin",
+        "version": "dev-master",
+        "source": {
+          "type": "git",
+          "url": "git@github.com:nicoandrade/wp-headless-trigger.git",
+          "reference": "master"
+        }
+      }
+    }
+  ],
+  "require": {
+    "php": ">=7.4",
+    "composer/installers": "^2.2",
+    "vlucas/phpdotenv": "^5.4",
+    "oscarotero/env": "^2.1",
+    "roots/bedrock-autoloader": "^1.0",
+    "roots/bedrock-disallow-indexing": "^2.0",
+    "roots/wordpress": "6.0.2",
+    "roots/wp-config": "1.0.0",
+    "roots/wp-password-bcrypt": "1.1.0",
+    "wpackagist-theme/twentytwentytwo": "^1.2",
+    "koodimonni-language/fr_fr": "*",
+    "koodimonni-language/core-fr_fr": "*",
+    "wp-graphql/wp-graphql": "^1.11",
+    "funkhaus/wp-graphql-cors": "master",
+    "wp-graphql/wp-graphql-acf": "^0.6.1",
+    "pristas-peter/wp-graphql-gutenberg": "^0.3.12",
+    "ivanmartin33/acf-pro": "dev-acf-pro",
+    "wpackagist-plugin/custom-post-type-ui": "^1.13",
+    "nicoandrade/wp-headless-trigger": "dev-master",
+    "wpackagist-plugin/wps-hide-login": "^1.9"
+  },
+  "require-dev": {
+    "squizlabs/php_codesniffer": "^3.7.1",
+    "roave/security-advisories": "dev-latest"
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "preferred-install": "dist",
+    "allow-plugins": {
+      "composer/installers": true,
+      "roots/wordpress-core-installer": true,
+      "koodimonni/composer-dropin-installer": true
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "extra": {
+    "installer-paths": {
+      "web/app/mu-plugins/{$name}/": [
+        "type:wordpress-muplugin",
+        "wp-graphql/wp-graphql",
+        "funkhaus/wp-graphql-cors",
+        "wp-graphql/wp-graphql-acf",
+        "pristas-peter/wp-graphql-gutenberg",
+        "ivanmartin33/acf-pro",
+        "wpackagist-plugin/custom-post-type-ui",
+        "wpackagist-plugin/wps-hide-login",
+        "nicoandrade/wp-headless-trigger",
+        "wpackagist-plugin/wps-hide-login"
+      ],
+      "web/app/plugins/{$name}/": [
+        "type:wordpress-plugin"
+      ],
+      "web/app/themes/{$name}/": [
+        "type:wordpress-theme"
+      ],
+      "dropin-paths": {
+        "web/app/languages/": [
+          "vendor:koodimonni-language"
+        ],
+        "web/app/languages/plugins/": [
+          "vendor:koodimonni-plugin-language"
+        ],
+        "web/app/languages/themes/": [
+          "vendor:koodimonni-theme-language"
+        ]
+      }
+    },
+    "wordpress-install-dir": "web/wp"
+  },
+  "scripts": {
+    "post-root-package-install": [
+      "php -r \"copy('.env.example', '.env');\""
+    ],
+    "test": [
+      "phpcs"
+    ]
+  }
+}
